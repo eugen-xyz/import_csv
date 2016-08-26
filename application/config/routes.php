@@ -39,7 +39,14 @@
 */
 
 $route['admin']     = "admin/admin";
-$route['employee']     = "admin/admin/employee";
+$route['admin/system_users']     = "admin/admin/system_users";
+$route['admin/task_types']     = "admin/admin/task_types";
+$route['admin/projects']     = "admin/admin/projects";
+$route['admin/manhours']     = "admin/admin/manhours";
+$route['admin/track_projects']     = "admin/admin/track_projects";
+
+$route['dev']     = "dev/dev"; 
+$route['dev/track_projects']     = "dev/dev/track_projects"; 
 
 $route['default_controller'] = "welcome";
 $route['404_override'] = '';
