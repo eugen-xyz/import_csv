@@ -6,3 +6,8 @@
 
 </head>
 <body>
+
+    <div class="jumbotron">
+        <h1>Manhours Management System</h1>
+    </div>
+    
