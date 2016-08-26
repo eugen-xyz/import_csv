@@ -38,15 +38,22 @@
 |
 */
 
-$route['admin']     = "admin/admin";
-$route['admin/system_users']     = "admin/admin/system_users";
-$route['admin/task_types']     = "admin/admin/task_types";
-$route['admin/projects']     = "admin/admin/projects";
-$route['admin/manhours']     = "admin/admin/manhours";
-$route['admin/track_projects']     = "admin/admin/track_projects";
+$route['admin'] = "admin/admin";
+$route['admin/system_users'] = "admin/admin/system_users";
+$route['admin/task_types'] = "admin/admin/task_types";
+$route['admin/projects'] = "admin/admin/projects";
+$route['admin/manhours'] = "admin/admin/manhours";
+$route['admin/track_projects'] = "admin/admin/track_projects";
 
-$route['dev']     = "dev/dev"; 
-$route['dev/track_projects']     = "dev/dev/track_projects"; 
+$route['admin/system_users/api'] = "admin/users/system_users_api";
+$route['admin/task_types/api'] = "admin/task_type/task_types_api";
+$route['admin/projects/api'] = "admin/projects/projects_api";
+$route['admin/manhours/api'] = "admin/manhours/manhours_api";
+
+
+$route['employee'] = "employee/employee"; 
+$route['employee/track_projects'] = "employee/employee/track_projects"; 
+
 
 $route['default_controller'] = "welcome";
 $route['404_override'] = '';

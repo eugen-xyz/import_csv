@@ -1,5 +1,5 @@
 <?php 
-    class Dev extends CI_Controller{
+    class Employee extends CI_Controller{
 
         public function __construct(){
 
