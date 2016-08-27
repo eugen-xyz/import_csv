@@ -52,6 +52,7 @@ $route['admin/manhours/api'] = "admin/manhours/manhours_api";
 
 $route['admin/resource/csv'] = "admin/export_csv/csv_resource";
 $route['admin/export/csv'] = "admin/export_csv/save";
+$route['admin/upload/csv'] = "admin/export_csv/upload_csv";
 
 
 $route['employee'] = "employee/employee"; 

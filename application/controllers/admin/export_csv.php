@@ -44,7 +44,7 @@
             $file =  file_get_contents($path) ;
 
 
-            $handle = fopen('files/'.$filename.".csv", "w");
+            $handle = fopen('csv_download/'.$filename.".csv", "w+");
             fwrite($handle, $file);
             fclose($handle);
 
@@ -53,9 +53,23 @@
             header('Expires: 0');
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
-            header('Content-Length: ' . filesize('files/'.$filename.'.csv'));
-            readfile('files/'.$filename.'.csv');
+            header('Content-Length: ' . filesize('csv_download/'.$filename.'.csv'));
+            readfile('csv_download/'.$filename.'.csv');
+            unlink('csv_download/'.$filename.'.csv');
             exit;
  
         }
+
+        public function upload_csv(){
+
+            $file = fopen($_FILES['file']['tmp_name'], 'r+');
+                       
+            while(! feof($file)){
+                print_r(fgetcsv($file));
+            }
+
+            fclose($file);
+        }
     }
+
+ 
