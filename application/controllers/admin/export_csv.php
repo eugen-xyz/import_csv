@@ -8,6 +8,8 @@
         }
 
         public function csv_resource(){
+            //getting resource and convert to csv
+
             $jsonResource = base_url(). "index.php/admin/manhours/api";
             $json = file_get_contents($jsonResource);
             $array = json_decode($json, true);
@@ -21,7 +23,7 @@
                     fputcsv($f, $firstLineKeys);
                     $firstLineKeys = array_flip($firstLineKeys);
                 }
-                fputcsv($f, array_merge($firstLineKeys, $line));
+                  fputcsv($f, array_merge($firstLineKeys, $line));
             }
         }
 

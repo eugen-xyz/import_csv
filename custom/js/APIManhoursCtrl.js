@@ -10,16 +10,6 @@ app.controller("APIManhoursCtrl", function ($scope, $http, $interval) {
     };
     // $interval( function(){ $scope.init(); }, 5000);
 
-    $scope.export = function(){
-
-        $scope.manhours_csv = [];
-        $http.get(public + 'admin/export/csv').
-        success(function(data, status, headers, config) {
-            $scope.manhours_csv = data;
-            console.log($scope.manhours_csv);
-        }); 
-    }
-
     $scope.init();
 
 });
