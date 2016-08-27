@@ -9,10 +9,21 @@
         }
 
         public function get_manhours(){
+            //select all active manhours
 
-            $this->db->select('
-                                manhours_id,
-                                users.username,
+            $this->db->select('*')
+                    ->from('manhours')
+                    ->join('users', 'users.user_id = manhours.user_id')
+                    ->join('task_type', 'task_type.task_type_id = manhours.task_type_id')
+                    ->join('projects', 'projects.project_id = manhours.project_id')
+                    ->where('manhours.is_active', '1')
+                    ->order_by("manhours_id", "ASC");
+
+            $active_manhours = $this->db->get();
+
+            if(!empty($active_manhours)){
+                $this->db->select('
+                                date_created,
                                 users.first_name,
                                 users.last_name,
                                 projects.project_code,
@@ -20,21 +31,20 @@
                                 task_type.task_type,
                                 task_description,
                                 time_rendered,
-                                status,
-                                date_created,
-                                manhours.is_active
+                                status
                             ')
-                ->from('manhours')
-                ->join('users', 'users.user_id = manhours.user_id')
-                ->join('task_type', 'task_type.task_type_id = manhours.task_type_id')
-                ->join('projects', 'projects.project_id = manhours.project_id')
-                ->where('manhours.is_active', '1')
-                ->order_by("manhours_id", "ASC");
+                    ->from('manhours')
+                    ->join('users', 'users.user_id = manhours.user_id')
+                    ->join('task_type', 'task_type.task_type_id = manhours.task_type_id')
+                    ->join('projects', 'projects.project_id = manhours.project_id')
+                    ->order_by("manhours_id", "ASC");
 
-            $query = $this->db->get();
+                $query = $this->db->get();
+            }
 
             return $query->result_array();
             $query->free_result();
+            $active_manhours->free_result();
         }
 
 
