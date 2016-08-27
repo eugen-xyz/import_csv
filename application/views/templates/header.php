@@ -8,6 +8,6 @@
 <body>
 
     <div class="jumbotron">
-        <h1>Manhours Management System</h1>
+        <h1 style="text-align:center;">Manhours Management System</h1>
     </div>
     

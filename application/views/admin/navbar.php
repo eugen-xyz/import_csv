@@ -8,8 +8,9 @@
                     <span class="icon-bar"></span> 
                 </button>
                 <div class="nav navbar-nav">
-                    <li><a href="<?=base_url();?>index.php/admin"><span class="glyphicon glyphicon-th"></span> &nbsp;MMS</a></li>
-                    <li class=""><a class="navbar-brand hidden-lg hidden-md" href="<?=base_url();?>index.php/admin"> Manhours Management System</a></li>
+                    <li><a class="navbar-brand hidden-sm hidden-xs"  href="<?=base_url();?>index.php/admin"><span class="glyphicon glyphicon-th"></span> &nbsp;MMS</a></li>
+                    
+                    <li><a class="navbar-brand hidden-lg hidden-md" href="<?=base_url();?>index.php/admin"><span class="glyphicon glyphicon-th"></span> Manhours Management System</a></li>
                 </div>
             </div>
         

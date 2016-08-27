@@ -5,6 +5,7 @@
 
             parent::__construct();
             $this->load->helper('url');
+            $this->load->helper('form_helper');
         }
 
         public function index(){

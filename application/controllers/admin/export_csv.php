@@ -40,7 +40,7 @@
 
             $filename = $first.$last;
 
-            $path = base_url(). "index.php/admin/export/csv";
+            $path = base_url(). "index.php/admin/resource/csv";
             $file =  file_get_contents($path) ;
 
 

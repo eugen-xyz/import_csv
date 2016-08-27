@@ -6,7 +6,8 @@
 
         <div class="col-md-3 col-md-offset-9 ">
             <div  class="btn-group pull-right">
-                <form action="save/csv" method="post">
+                <?=form_open('admin/export/csv');?>
+
                     <button class="btn btn-success">Export as CSV</button>
                 </form>
             </div>
