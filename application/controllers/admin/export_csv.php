@@ -42,17 +42,17 @@
             $file =  file_get_contents($path) ;
 
 
-            $handle = fopen($filename.".csv", "w");
+            $handle = fopen('files/'.$filename.".csv", "w");
             fwrite($handle, $file);
             fclose($handle);
 
             header('Content-Type: application/octet-stream');
-            header('Content-Disposition: attachment; filename='.basename($filename.'.csv'));
+            header("Content-Disposition: attachment; filename=$filename.csv ");
             header('Expires: 0');
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
-            header('Content-Length: ' . filesize($filename.'.csv'));
-            readfile($filename.'.csv');
+            header('Content-Length: ' . filesize('files/'.$filename.'.csv'));
+            readfile('files/'.$filename.'.csv');
             exit;
  
         }
