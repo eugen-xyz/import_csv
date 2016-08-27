@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-ng-app="manhoursapp">
 <head>
     <title>Admin - Manhours Management System</title>
     <link rel="stylesheet" type="text/css" href="<?=base_url();?>custom/bootstrap/css/bootstrap.css">
