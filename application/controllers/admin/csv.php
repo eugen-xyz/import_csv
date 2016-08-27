@@ -5,6 +5,7 @@
 
             parent::__construct();
             $this->load->helper('url');
+            $this->load->library('session');
         }
 
         public function csv_resource(){
@@ -71,29 +72,42 @@
                 {
                     if(!$header)
                         $header = $row;
-                    else
-                        $data[] = array_combine($header, $row);
+                    else{
+                        if(!array_combine($header, $row)){
+                            $this->session->set_flashdata('error','Oops! You are trying to upload an invalid csv file.');
+                            redirect(base_url()."index.php/admin/manhours");
+                        }
+                        else{
+                            $data[] = array_combine($header, $row);
+                        }
+                    }
                 }
                 fclose($handle);
             }
-            // print json_encode($data, JSON_PRETTY_PRINT);
-            // print_r ($data);
+   
             $counter =  count($data);
             $num = 0;
             do{
                 foreach ($data as $out){
-                    $data = array(
-                        $project_code =  $out['project_code'],
-                        $date_created =  $out['date_created'],
-                        $task_type =  $out['task_type'],
-                        $task_description = $out['task_description'],
-                        $time_rendered = $out['time_rendered'],
-                        $status = $out['status']
-                    );
-                    $this->save_csv($data);
-                    $num++;
+                    if(!isset($out['project_code']) && !isset($out['date_created']) && !isset($out['task_type']) && !isset($out['task_description']) && !isset($out['time_rendered'])){
+                            $this->session->set_flashdata('invalid','Ohhh!! The CSV file you\'re trying to upload has an invalid column.');
+                            redirect(base_url()."index.php/admin/manhours");
+                    }
+                    else{
+                        $data = array(
+                            $project_code =  $out['project_code'],
+                            $date_created =  $out['date_created'],
+                            $task_type =  $out['task_type'],
+                            $task_description = $out['task_description'],
+                            $time_rendered = $out['time_rendered'],
+                            $status = $out['status']
+                        );
+                        $this->save_csv($data);
+                        $num++;
+                    }
                 }
             }while($num != $counter);
+            $this->session->set_flashdata('success','CSV file was uploaded succesfully.');
             redirect(base_url()."index.php/admin/manhours");
         }
 

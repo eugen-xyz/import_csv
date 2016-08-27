@@ -1,4 +1,10 @@
     
+    <?php 
+        $error_message = $this->session->flashdata('error'); 
+        $success_message = $this->session->flashdata('success'); 
+        $invalid_message = $this->session->flashdata('invalid'); 
+    ?>
+
     <div class="container-fluid" data-ng-controller="APIManhoursCtrl">
         <div class="col-md-12">
             <h1>Manhours</h1>
@@ -18,11 +24,43 @@
             </div>
         </div>
 
-        
-        <form action="upload/csv" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+
+        <?php echo form_open_multipart('admin/upload/csv') ?>
             <input type="file" name="file">
             <input type="submit" name="btn_submit" value="Upload File" />
         </form>
+
+
+        <?php 
+            if(! empty($error_message)){
+        ?>
+                <div class="alert alert-danger">
+                    <p style="text-align:center;">
+                        <?= $error_message ?>
+                    </p>
+                </div>
+        <?php
+            }
+            if(! empty($success_message)){
+        ?>
+                <div class="alert alert-success">
+                    <p style="text-align:center;">
+                        <?= $success_message ?>
+                    </p>
+                </div>
+        <?php
+            }
+            if(! empty($invalid_message)){
+        ?>
+                <div class="alert alert-warning">
+                    <p style="text-align:center;">
+                        <?= $invalid_message ?>
+                    </p>
+                </div>
+        <?php 
+            }
+        ?>
+               
 
         <div class="form-group col-md-3 col-md-offset-9">
             <br />
@@ -34,7 +72,7 @@
                 <input type="text" ng-model="search" style="height:3em;"  id="search" class="form-control" placeholder="Search here...">
 
                 <span class="input-group-addon">
-                    <button  class="btn btn-xs" data-ng-click="search = null"> 
+                    <button  class="btn btn-xs" data-ng-click="search = ''"> 
                         <i class="glyphicon glyphicon-trash"></i>
                     </button>
                 </span>
