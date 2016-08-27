@@ -50,9 +50,10 @@ $route['admin/task_types/api'] = "admin/task_type/task_types_api";
 $route['admin/projects/api'] = "admin/projects/projects_api";
 $route['admin/manhours/api'] = "admin/manhours/manhours_api";
 
-$route['admin/resource/csv'] = "admin/export_csv/csv_resource";
-$route['admin/export/csv'] = "admin/export_csv/save";
-$route['admin/upload/csv'] = "admin/export_csv/upload_csv";
+$route['admin/resource/csv'] = "admin/csv/csv_resource";
+$route['admin/export/csv'] = "admin/csv/save";
+$route['admin/upload/csv'] = "admin/csv/upload_csv";
+$route['admin/save/csv'] = "admin/csv/save_csv";
 
 
 $route['employee'] = "employee/employee"; 

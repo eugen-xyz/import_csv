@@ -1,5 +1,5 @@
 <?php 
-    class Export_csv extends CI_Controller{
+    class Csv extends CI_Controller{
 
         public function __construct(){
 
@@ -60,15 +60,47 @@
  
         }
 
-        public function upload_csv(){
+        public function upload_csv($delimiter=','){
+            // csv to json resource
 
-            $file = fopen($_FILES['file']['tmp_name'], 'r+');
-                       
-            while(! feof($file)){
-                print_r(fgetcsv($file));
+            $header = NULL;
+            $data = array();
+            if (($handle = fopen($_FILES['file']['tmp_name'], 'r+')) !== FALSE)
+            {
+                while (($row = fgetcsv($handle, 1000, $delimiter)) !== FALSE)
+                {
+                    if(!$header)
+                        $header = $row;
+                    else
+                        $data[] = array_combine($header, $row);
+                }
+                fclose($handle);
             }
+            // print json_encode($data, JSON_PRETTY_PRINT);
+            // print_r ($data);
+            $counter =  count($data);
+            $num = 0;
+            do{
+                foreach ($data as $out){
+                    $data = array(
+                        $project_code =  $out['project_code'],
+                        $date_created =  $out['date_created'],
+                        $task_type =  $out['task_type'],
+                        $task_description = $out['task_description'],
+                        $time_rendered = $out['time_rendered'],
+                        $status = $out['status']
+                    );
+                    $this->save_csv($data);
+                    $num++;
+                }
+            }while($num != $counter);
+            redirect(base_url()."index.php/admin/manhours");
+        }
 
-            fclose($file);
+        public function save_csv($data){
+
+            $this->load->model('manhours_model');
+            return $this->manhours_model->save_csv($data);
         }
     }
 

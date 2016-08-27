@@ -20,12 +20,9 @@
 
         
         <form action="upload/csv" method="post" accept-charset="utf-8" enctype="multipart/form-data">
-        <input type="file" name="file">
-        <input type="submit" name="btn_submit" value="Upload File" />
+            <input type="file" name="file">
+            <input type="submit" name="btn_submit" value="Upload File" />
         </form>
-
-
-                
 
         <div class="form-group col-md-3 col-md-offset-9">
             <br />
