@@ -27,7 +27,7 @@
                 ->join('task_type', 'task_type.task_type_id = manhours.task_type_id')
                 ->join('projects', 'projects.project_id = manhours.project_id')
                 ->where('manhours.is_active', '1')
-                ->order_by("manhours_id", "ASC");
+                ->order_by("manhours_id", "DESC");
 
             $query = $this->db->get();
            
@@ -69,7 +69,7 @@
              }
 
             $data = array(
-                    'user_id'            => '2',
+                    'user_id'            => '1',
                     'project_id'         =>  $proj_id,
                     'project_code'       =>  '',
                     'project_name'       =>  '',

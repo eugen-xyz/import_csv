@@ -106,7 +106,6 @@
                             $time_rendered = $out['time_rendered'],
                             $status = $out['status']
                         );
-
                         $this->save_csv($data);
                         $num++;
                     }

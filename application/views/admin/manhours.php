@@ -1,4 +1,4 @@
-    
+
     <?php 
         $error_message = $this->session->flashdata('error'); 
         $success_message = $this->session->flashdata('success'); 
@@ -113,8 +113,7 @@
                 <thead style="font-weight:bold;">
                     <tr>
                         <td>Date</td>
-                        <td>First Name</td>
-                        <td>Last Name</td>
+                        <td>Assignee</td>
                         <td>Project Code</td>
                         <td>Project Name</td>
                         <td>Task Type</td>
@@ -130,10 +129,7 @@
                             <span data-ng-bind="manhour.date_created | date:'MMMM d, y'"></span>
                         </td>
                         <td>
-                            <span data-ng-bind="manhour.first_name"></span>
-                        </td>
-                        <td>
-                            <span data-ng-bind="manhour.last_name"></span>
+                            <span data-ng-bind="manhour.last_name + ' ' + manhour.first_name"></span>
                         </td>
                         <td>
                             <span data-ng-bind="manhour.project_code"></span>
