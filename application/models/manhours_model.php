@@ -5,6 +5,7 @@
 
             parent::__construct();
             $this->load->database();
+            $this->load->library('session');
             $this->load->helper('url');
         }
 
@@ -47,6 +48,10 @@
             if ($project_id_query->num_rows() > 0) {
                 $proj_id =  $project_id_query->row()->project_id;
              }
+            else{
+                $this->session->set_flashdata('error','Oops! "Project Code" does not exist.');
+                redirect(base_url()."index.php/admin/manhours");
+             }
 
 
             $task_type = $data[2];
@@ -57,10 +62,14 @@
             
             if ($task_type_id_query->num_rows() > 0) {
                 $task_id =  $task_type_id_query->row()->task_type_id;
+            }
+            else{
+                $this->session->set_flashdata('error','Oops! "Task Type" does not exist.');
+                redirect(base_url()."index.php/admin/manhours");
              }
 
             $data = array(
-                    'user_id'            => '1',
+                    'user_id'            => '2',
                     'project_id'         =>  $proj_id,
                     'project_code'       =>  '',
                     'project_name'       =>  '',
