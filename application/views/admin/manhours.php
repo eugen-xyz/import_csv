@@ -13,28 +13,51 @@
         <div class="col-md-3 col-md-offset-9 ">
             <div  class="btn-group pull-right">
                 <?=form_open('admin/export/csv');?>
-
                     <button class="btn btn-success">Export as CSV</button>
                 </form>
             </div>
             <div  class="btn-group pull-right">
-                <form action="#" method="post">
-                    <button class="btn btn-primary">Import CSV</button>
-                </form>
+                <a href="#import" data-toggle="modal" role="button" class="btn btn-primary">
+                    Import CSV
+                </a>
+            </div>
+        </div>
+
+        <div class="modal fade" id="import" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <i class="fa fa-envelope fa-4x"></i>
+                        <h4 class="modal-title" id="myModalLabel"><b>Import CSV</b>
+                        <b>Browse CSV file and click upload</b></h4>
+                    </div>
+                    <div class="modal-body" >
+                        <div class="container-fluid">
+                            <?php echo form_open_multipart('admin/upload/csv') ?>
+                                <div class="col-md-9">
+                                    <input type="file" style="height:3em;" class="form-control" name="file">
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="submit" class="btn btn-success" name="btn_submit" value="Upload File" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" data-dismiss="modal" aria-label="Close" role="button" class="btn btn-default btn-lg">Close</a>
+                    </div>
+                </div>
             </div>
         </div>
 
 
-        <?php echo form_open_multipart('admin/upload/csv') ?>
-            <input type="file" name="file">
-            <input type="submit" name="btn_submit" value="Upload File" />
-        </form>
-
-
+        <div class="container " style="margin-top:10em;">
         <?php 
-            if(! empty($error_message)){
+            if(!empty($error_message)){
         ?>
                 <div class="alert alert-danger">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                     <p style="text-align:center;">
                         <?= $error_message ?>
                     </p>
@@ -44,6 +67,7 @@
             if(! empty($success_message)){
         ?>
                 <div class="alert alert-success">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                     <p style="text-align:center;">
                         <?= $success_message ?>
                     </p>
@@ -53,6 +77,7 @@
             if(! empty($invalid_message)){
         ?>
                 <div class="alert alert-warning">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                     <p style="text-align:center;">
                         <?= $invalid_message ?>
                     </p>
@@ -60,6 +85,7 @@
         <?php 
             }
         ?>
+        </div>
                
 
         <div class="form-group col-md-3 col-md-offset-9">
