@@ -74,7 +74,7 @@
                         $header = $row;
                     else{
                         if(!array_combine($header, $row)){
-                            $this->session->set_flashdata('error','Oops! You are trying to upload an invalid csv file.');
+                            $this->session->set_flashdata('error','Oops! Your CSV file\'s header and row does not match.');
                             redirect(base_url()."index.php/admin/manhours");
                         }
                         else{
@@ -93,6 +93,10 @@
                             $this->session->set_flashdata('invalid','Ohhh!! The CSV file you\'re trying to upload has an invalid column.');
                             redirect(base_url()."index.php/admin/manhours");
                     }
+                    else if(($out['project_code'] == NULL) OR ($out['date_created'] == NULL) OR ($out['task_type'] == NULL) OR ($out['task_description'] == NULL) OR ($out['time_rendered'] == NULL)){
+                            $this->session->set_flashdata('error','Oops! Your CSV file\'s header and row does not match.');
+                            redirect(base_url()."index.php/admin/manhours");
+                    }
                     else{
                         $data = array(
                             $project_code =  $out['project_code'],
@@ -102,6 +106,7 @@
                             $time_rendered = $out['time_rendered'],
                             $status = $out['status']
                         );
+
                         $this->save_csv($data);
                         $num++;
                     }
