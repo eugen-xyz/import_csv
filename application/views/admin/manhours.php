@@ -3,6 +3,14 @@
         $error_message = $this->session->flashdata('error'); 
         $success_message = $this->session->flashdata('success'); 
         $invalid_message = $this->session->flashdata('invalid'); 
+
+        if(empty($_POST['items'])){
+            $items = 10;
+        }
+        else{
+            $items = $_POST['items'];
+        }
+
     ?>
 
     <div class="container-fluid" data-ng-controller="APIManhoursCtrl">
@@ -86,27 +94,51 @@
             }
         ?>
         </div>
-               
 
-        <div class="form-group col-md-3 col-md-offset-9">
-            <br />
-            <div class="input-group">
-                <span class="input-group-addon">
-                    <i class="glyphicon glyphicon-search"></i>
-                </span>
-
-                <input type="text" ng-model="search" style="height:3em;"  id="search" class="form-control" placeholder="Search here...">
-
-                <span class="input-group-addon">
-                    <button  class="btn btn-xs" data-ng-click="search = ''"> 
-                        <i class="glyphicon glyphicon-trash"></i>
-                    </button>
-                </span>
+        <div class="col-md-6">
+            <div class="col-md-3">
+                <form action="#" method="POST">
+                    <label>Items per page:</label>
+                    <select class="form-control" name="items" onchange="submit()">
+                        <option disabled="disabled" selected></option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                        <option value="50">50</option>
+                    </select>
+                </form>
             </div>
+        </div>
+              
 
+        <div class="form-group col-md-6">
+            <div class="col-md-6 pull-right">
+                <br />
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </span>
+
+                    <input type="text" ng-model="search" style="height:3em;"  id="search" class="form-control" placeholder="Search here...">
+
+                    <span class="input-group-addon">
+                        <button  class="btn btn-xs" data-ng-click="search = ''"> 
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <p>Showing <?= $items; ?> items per page</p>
+            </div>
             <br /><br />
         </div>
        
+
     
         <div class="table-responsive">
             <table class="table table-hover">
@@ -122,8 +154,8 @@
                         <td>Status</td>
                     </tr>
                 </thead>
-
-                <tbody data-dir-paginate="manhour in manhours|filter:search|itemsPerPage:10">
+                
+                <tbody data-dir-paginate="manhour in manhours|filter:search|itemsPerPage:<?= $items ?>">
                     <tr>
                         <td>
                             <span data-ng-bind="manhour.date_created | date:'MMMM d, y'"></span>

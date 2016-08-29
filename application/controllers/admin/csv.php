@@ -84,6 +84,10 @@
                 }
                 fclose($handle);
             }
+            else if(empty(fopen($_FILES['file']['tmp_name'], 'r+'))){
+                $this->session->set_flashdata('error','Oops! Please select a file to upload.');
+                redirect(base_url()."index.php/admin/manhours");
+            }
    
             $counter =  count($data);
             $num = 0;

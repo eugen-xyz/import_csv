@@ -22,4 +22,13 @@
             return $query->result_array();
             $query->free_result();
         }
+
+        public function add_task_type($data){
+
+            $data = array(
+                    'task_type'     => $data[0]
+                );
+
+            return $this->db->insert('task_type', $data);
+        }
     }

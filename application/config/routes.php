@@ -40,15 +40,21 @@
 
 $route['admin'] = "admin/admin";
 $route['admin/system_users'] = "admin/admin/system_users";
+$route['admin/system_users/api'] = "admin/users/system_users_api";
+
 $route['admin/task_types'] = "admin/admin/task_types";
+$route['admin/task_types/api'] = "admin/task_type/task_types_api";
+$route['admin/task_type/add_task_type'] = "admin/task_type/add_task_type";
+
 $route['admin/projects'] = "admin/admin/projects";
+$route['admin/projects/add_project'] = "admin/projects/add_projects";
+$route['admin/projects/api'] = "admin/projects/projects_api";
+
 $route['admin/manhours'] = "admin/admin/manhours";
+$route['admin/manhours/api'] = "admin/manhours/manhours_api";
+
 $route['admin/track_projects'] = "admin/admin/track_projects";
 
-$route['admin/system_users/api'] = "admin/users/system_users_api";
-$route['admin/task_types/api'] = "admin/task_type/task_types_api";
-$route['admin/projects/api'] = "admin/projects/projects_api";
-$route['admin/manhours/api'] = "admin/manhours/manhours_api";
 
 $route['admin/resource/csv'] = "admin/csv/csv_resource";
 $route['admin/export/csv'] = "admin/csv/save";

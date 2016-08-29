@@ -30,7 +30,7 @@
                 ->order_by("manhours_id", "DESC");
 
             $query = $this->db->get();
-           
+          
 
             return $query->result_array();
             $query->free_result();
